@@ -41,5 +41,6 @@ def add_phone():
 @user.route('/cart')
 @login_required
 def cart():
-	return render_template('cart.html')
+	phones = Phones.query.all()
+	return render_template('cart.html', phones=phones)
 
