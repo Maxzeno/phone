@@ -1,0 +1,398 @@
+
+<!-- <nav class="navbar text-white bg-primary container-fluid">
+  <span class="border-0 navbar-toggler pcursor" style="font-size:20px;" onclick="openNav()">&#9776;</span>
+  <a href="#" class="navbar-brand mx-auto">
+    <img src="{{ url_for('static', filename='img/itunesmain.png') }}" style="width: 120px;">
+  </a>
+
+  <div>
+    <span class="me-4"><i class="bi bi-cart pcursor" style="font-size: 1.1rem; line-height: 0"></i></span>
+    <span><i class="bi bi-person pcursor" style="font-size: 1.1rem; line-height: 0"></i></span>
+  </div>
+</nav>
+
+ <div id="mySidenav" class="sidenav">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="/select-artist">
+              <i class="bi bi-mic mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>Select Artist <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">
+              <i class="bi bi-speedometer2 mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/link-type">
+                <i class="bi bi-link-45deg mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>Create Link
+            </a>
+          </li>
+   
+          <li class="nav-item">
+            <a class="nav-link" href="/supporters">
+              <i class="bi bi-people mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>Supporters
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/sent-emails">
+              <i class="bi bi-envelope mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>Email
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/statistics">
+              <i class="bi bi-graph-up mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>Statistics
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/withdraw">
+              <i class="bi bi-currency-dollar mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>Withdraw
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/referrals">
+              <i class="bi bi-people mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>Referrals
+            </a>
+          </li> 
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Others</span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="/show-affiliate">
+              <i class="bi bi-diagram-2 mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>
+              Affiliate
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/show-socials">
+              <span data-feather="file-text"></span>
+              <i class="bi bi-cursor mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>
+              Social media
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/show-pixel">
+              <span data-feather="file-text"></span>
+              <i class="bi bi-pin-map mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>
+              Pixel
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/show-analytics">
+              <span data-feather="file-text"></span>
+              <i class="bi bi-bar-chart-line mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>
+              Analytics
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/show-google-analytics">
+              <span data-feather="file-text"></span>
+              <i class="bi bi-image mr-2 text-dark" style="font-size: 1.3em; line-height: 0;"></i>
+              NFT
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Templating</title>
+</head>
+
+<link rel="stylesheet" href="../static/bootstrap-5.1.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../static/bootstrap/dist/css/bootstrap.min.css">
+<script src="../static/js/jquery-3.3.1.min.js"></script>
+
+
+<body>
+<nav class="navbar text-white container-fluid" style="background-color: #fdd922">
+  <span class="border-0 navbar-toggler pcursor" style="font-size:0px;" onclick="openNav()">&#9776;</span>
+  <a href="#" class="navbar-brand mx-auto">
+    <img src="../static/img/itunesmain.png" style="width: 120px;">
+  </a>
+
+  <div>
+    <span class="me-4"><i class="bi bi-cart pcursor" style="font-size: 1.1rem; line-height: 0"></i></span>
+    <span><i class="bi bi-person pcursor" style="font-size: 1.1rem; line-height: 0"></i></span>
+  </div>
+</nav>
+
+
+<script src="../static/bootstrap-5.1.1/dist/js/bootstrap.min.js"></script>
+<script src="../static/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Amazon FavIcon -->
+  <link rel="icon" href="img/amazon_favicon.ico" image="image/gif" size="16x16">
+  <!-- Bootstrap CSS
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+
+  <!-- Font Awesome CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <!-- Bootstrap CSS Local -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Drawer CSS File -->
+  <link rel="stylesheet" href="css/bootstrap-drawer.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css">
+  <title>Amazon : Navbar</title>
+</head>
+
+<body>
+  <!-- Navbar Starts -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <!-- Drawer Start -->
+    <button class="btn btn-outline-light" data-toggle="drawer" data-target="#amazonDrawer">
+      <i class="fas fa-sliders-h"></i>
+    </button>
+
+    <div class="drawer drawer-left slide" tabindex="-1" role="dialog" aria-labelledby="drawer-demo-title"
+      aria-hidden="true" id="amazonDrawer">
+      <div class="drawer-content drawer-content-scrollable" role="document">
+        <div class="drawer-header bg-dark text-white">
+          <h4 class="drawer-title mx-auto" id="drawer-demo-title">
+            <i class="fas fa-user-circle"></i>
+            Hello, Sign In
+          </h4>
+        </div>
+        <div class="drawer-body">
+          <h6 class="text-muted text-uppercase">Help & Settings</h6>
+          <a href="your_account.html" class="btn btn-outline-success my-2 btn-sm">You Account</a>
+          <a href="login.html" class="btn btn-warning my-2  btn-sm">Sign in</a>
+        </div>
+        <div class="drawer-footer">
+          <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="drawer" aria-label="Close">
+            <i class="fas fa-2x fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div> <!-- Drawer Ends -->
+
+    <a class="navbar-brand pl-2" href="navbar.html">
+      <img src="img/amazon_logo_white.png" height="30" width="100" alt="amazon logo white">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Search Bar Starts -->
+     <!--  <form class="form-inline px-lg-5" novalidate method="get">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" name="btnCategory" type="button"
+                id="btnCategoryDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnCategoryDropdownMenu">
+                <a class="dropdown-item" href="#">All</a>
+                <a class="dropdown-item" href="#">Smartphone</a>
+                <a class="dropdown-item" href="#">Kitchen Hardware</a>
+                <a class="dropdown-item" href="#">Prime Deals</a>
+                <a class="dropdown-item" href="#">Book</a>
+              </div>
+            </div>
+          </div>
+          <input type="text" class="form-control" size="50" name="query" id="query">
+          <input type="text" name="category" id="category" value="book" hidden>
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-warning">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form> --> <!-- Search Bar Ends -->
+      <ul class="navbar-nav navbar-right">
+        <!-- Preffered Language Starts -->
+        <li class="nav-item dropdown px-2">
+          <a class="nav-link" href="#" id="prefLanguageDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-2x fa-language"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="prefLanguageDropdown">
+            <form class="p-3">
+              <div class="dropdown-divider"></div>
+              <div class="custom-control custom-radio mb-2">
+                <input class="custom-control-input" type="radio" name="prefLang" id="englishLang" value="english"
+                  checked>
+                <label class="custom-control-label" for="englishLang">
+                  <img src="img/flag/english.svg" alt="uk flag" width="50" height="30">
+                </label>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="custom-control custom-radio mb-2">
+                <input class="custom-control-input" type="radio" name="prefLang" id="hindiLang" value="hindi" checked>
+                <label class="custom-control-label" for="hindiLang">
+                  <img src="img/flag/hindi.svg" alt="uk flag" width="50" height="30">
+                </label>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="custom-control custom-radio mb-2">
+                <input class="custom-control-input" type="radio" name="prefLang" id="urduLang" value="urdu" checked>
+                <label class="custom-control-label" for="urduLang">
+                  <img src="img/flag/urdu.svg" alt="uk flag" width="50" height="30">
+                </label>
+              </div>
+              <div class="dropdown-divider"></div>
+              <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" name="prefLang" id="banglaLang" value="bangla" checked>
+                <label class="custom-control-label" for="banglaLang">
+                  <img src="img/flag/bangla.svg" alt="uk flag" width="50" height="30">
+                </label>
+              </div>
+              <div class="dropdown-divider"></div>
+            </form>
+          </div>
+        </li> <!-- Preffered Language Ends -->
+        <!-- User Account Starts -->
+        <li class="nav-item dropdown px-2">
+          <a class="nav-link" href="login.html" id="userAccount" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-2x fa-user-circle"></i>
+          </a>
+          <div class="dropdown-menu px-3" aria-labelledby="userAccount">
+            <div class="d-flex flex-column justify-content-center">
+              <a href="login.html" class="btn btn-warning w-75 btn-sm font-weight-bold">Signin</a>
+              <small>New customer?<a href="register.html"> Start here.</a></small>
+            </div>
+          </div>
+        </li> <!-- User Account Ends -->
+        <!-- Shopping Cart Starts -->
+        <li class="nav-item px-2">
+          <a class="nav-link" href="#" aria-disabled=" true">
+            <i class="fas fa-2x text-light fa-shopping-cart"></i>
+            <span class="badge badge-warning badge-pill">0</span>
+          </a>
+        </li> <!-- Shopping Cart Starts -->
+      </ul>
+    </div>
+  </nav> <!-- Navbar Ends -->
+
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <!-- Drawer JS File -->
+  <script src="js/bootstrap-drawer.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script src="js/custom.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Templating</title>
+</head>
+
+<link rel="stylesheet" href="../static/bootstrap-5.1.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../static/bootstrap/dist/css/bootstrap.min.css">
+<script src="../static/js/jquery-3.3.1.min.js"></script>
+
+
+<body>
+<nav class="navbar text-white container-fluid" style="background-color: #fdd922">
+  <span class="border-0 navbar-toggler pcursor" style="font-size:0px;" onclick="openNav()">&#9776;</span>
+  <a href="#" class="navbar-brand mx-auto">
+    <img src="../static/img/itunesmain.png" style="width: 120px;">
+  </a>
+
+  <div>
+    <span class="me-4"><i class="bi bi-cart pcursor" style="font-size: 1.1rem; line-height: 0"></i></span>
+    <span><i class="bi bi-person pcursor" style="font-size: 1.1rem; line-height: 0"></i></span>
+  </div>
+</nav>
+
+
+<script src="../static/bootstrap-5.1.1/dist/js/bootstrap.min.js"></script>
+<script src="../static/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+

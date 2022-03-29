@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>{% block title %} {% endblock %}</title>
+
+    
+
+    {#<script src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='icons-1.5.0/font/bootstrap-icons.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap-5.1.1/dist/css/bootstrap.min.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap/dist/css/bootstrap.min.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">#}
+
+
+      <!-- Amazon FavIcon -->
+  <link rel="icon" href="../static/amazon-clone/img/amazon_favicon.ico" image="image/gif" size="16x16">
+  <!-- Bootstrap CSS
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+
+<link rel="stylesheet" href="../static/icons-1.5.0/font/bootstrap-icons.css">
+
+<script src="../static/js/jquery-3.3.1.min.js"></script>
+<script src="../static/css/font-awesome.min.js"></script>
+
+
+  <!-- Font Awesome CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <!-- Bootstrap CSS Local -->
+<link rel="stylesheet" href="../static/bootstrap-5.1.1/dist/css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="../static/amazon-clone/css/bootstrap.min.css">
+  <!-- Drawer CSS File -->
+  <link rel="stylesheet" href="../static/amazon-clone/css/bootstrap-drawer.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../static/amazon-clone/css/custom.css">
+</head>
+
+<body class="body" style="background-color: rgba(0,0,0,0.02);">
+ <nav class="navbar <!-- navbar-expand-md --> navbar-dark bg-dark">
+    <!-- Drawer Start -->
+    <button class="btn btn-outline-light" data-toggle="drawer" data-target="#amazonDrawer">
+      <i class="fas fa-sliders-h"></i>
+    </button>
+
+    <div class="drawer drawer-left slide" tabindex="-1" role="dialog" aria-labelledby="drawer-demo-title"
+      aria-hidden="true" id="amazonDrawer">
+      <div class="drawer-content drawer-content-scrollable" role="document">
+        <div class="drawer-header bg-dark text-white">
+          <h4 class="drawer-title mx-auto" id="drawer-demo-title">
+            <i class="fas fa-user-circle"></i>
+            Hello, Sign In
+          </h4>
+        </div>
+        <div class="drawer-body">
+          <h6 class="text-muted text-uppercase">Help & Settings</h6>
+          <a href="your_account.html" class="btn btn-outline-success my-2 btn-sm">You Account</a>
+          <a href="login.html" class="btn btn-warning my-2  btn-sm">Sign in</a>
+        </div>
+        <div class="drawer-footer">
+          <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="drawer" aria-label="Close">
+            <i class="fas fa-2x fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div> <!-- Drawer Ends -->
+
+    <a class="navbar-brand pl-3" href="navbar.html">
+      <img src="../static/amazon-clone/img/amazon_logo_white.png" height="30" width="100" alt="amazon logo white">
+    </a>
+    <span>mmn</span>
+
+    <div class="" id="navbarSupportedContent">
+
+      <ul class="navbar-nav">
+
+        <!-- User Account Starts -->
+        <li class="nav-item dropdown px-2">
+          <a class="nav-link" href="login.html" id="userAccount" role="button">
+            <i class="fas fa-2x fa-user-circle"></i>
+          </a>
+        </li> <!-- User Account Ends -->
+        <!-- Shopping Cart Starts -->
+        <li class="nav-item px-2">
+          <a class="nav-link" href="#" aria-disabled=" true">
+            <i class="fas fa-2x text-light fa-shopping-cart"></i>
+            <span class="badge badge-warning badge-pill">0</span>
+          </a>
+        </li> <!-- Shopping Cart Starts -->
+      </ul>
+    </div>
+  </nav> <!-- Navbar Ends -->
+
+ 
+<div class="container"  id="content">
+    {% block body %} {% endblock %}
+</div>
+
+        <br>
+        <div style="position: absolute;left: 0; right: 0">
+            <div class="text-center">
+                <span>
+                  Copyright &copy; 2022 Phonie
+                </span>
+            </div>
+        </div> 
+    </div>
+
+
+{#
+<script src="{{url_for('static', filename='bootstrap-5.1.1/dist/js/bootstrap.min.js')}}"></script>
+
+<script type="text/javascript" src="{{url_for('static', filename='bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+
+<script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
+#}
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+
+  <script src="../static/static/js/popper.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <!-- Drawer JS File -->
+
+<script src="../static/bootstrap-5.1.1/dist/js/bootstrap.min.js"></script>
+
+<script src="../static/bootstrap/dist/js/bootstrap.min.js"></script>
+  
+
+  <script src="../static/amazon-clone/js/bootstrap-drawer.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script src="../static/amazon-clone/js/custom.js"></script>
+
+{% block script %}
+{% endblock %}
+
+</body>
+</html>
+
+
+
+
+
+
+   
+</body>
+</html>
+
+
+

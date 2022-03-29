@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %} {% endblock %}</title>
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='icons-1.5.0/font/bootstrap-icons.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-5.1.1/dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/dist/css/bootstrap.min.css') }}">
+  <style>
+    .st{
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1085;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      }
+
+      .cart-badge:after{
+        content:attr(value);
+        font-size:12px;
+        color: #fff;
+        background: #bd2130;
+        border-radius:50%;
+        padding: 0 5px;
+        position:relative;
+        left:-8px;
+        top:-10px;
+        opacity:0.9;
+    }
+  </style>
+</head>
+<body>
+<nav id="mainNav" style="background-color: #1a1d20" class="bg-dark container-fluid d-flex py-3">
+
+  <div class="text-light pe-4" style="cursor: pointer;" onclick="emmaNavOpen()">&#9776;</div>
+  <div><img src="{{ url_for('static', filename='img/copythistune_logobg.png') }}" style="max-height: 1.5rem"></div>
+  <div class="text-right text-light" style="position: absolute;right: 1rem">
+        <i class="bi bi-cart3 cart-badge" value="5" style="font-size: 1.3em; line-height: 0;"></i>
+        <span style="cursor: pointer;"><span class="ms-3"><i class="bi bi-person" value="5" style="font-size: 1.3em; line-height: 0;"></i></span><spam class="ms-2">signup</span></spam>
+{#
+      <ul class="navbar-nav px-3">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             
+            <span>
+              <img alt="" class="" src="{{ url_for('static',filename='image/music1.jpeg') }}" style="width: 30px; height: 30px; border-radius: 2rem;border: 2px solid #6c757d">
+            </span>
+            <span class="fs-6">
+             {% block artist_name %} {{ session['artist_name'] }} {% endblock %}
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right position-absolute shadow-sm py-0 mt-1" aria-labelledby="dropdown01">
+
+            <a class="dropdown-item border-bottom px-0 pl-3 py-2" href="/profile">
+              <i class="bi bi-person" style="font-size: 1.3em; line-height: 0;"></i>
+              <span class="ml-2">Profile</span>
+            </a>
+            <a class="dropdown-item border-bottom px-0 pl-3 py-2" href="/contact-us">
+              <i class="bi bi-telephone" style="font-size: 1.2em; line-height: 0;"></i>
+              <span class="ml-2">Contact</span>
+            </a>
+            <a class="dropdown-item border-bottom px-0 pl-3 py-2" href="#">
+              <i class="bi bi-gear" style="font-size: 1.3em; line-height: 0;"></i>
+              <span class="ml-2">Settings</span>
+            </a>
+            <a class="dropdown-item px-0 pl-3 py-2" href="/logout">
+              <i class="bi bi-power" style="font-size: 1.3em; line-height: 0;"></i>
+              <span class="ml-2">Logout</span>
+            </a>
+
+          </div>
+        </li>   
+      </ul>
+    #}
+  </div>
+</nav>
+
+<div id="emmaNav" class="shadow-sm st bg-white border-rights border-darks">
+  <div class="border-bottom px-4 py-3"  style="background-color: #1a1d20">
+    <div class="row">
+      <div  class="col-10">
+        <img class="img-fluid" src="{{ url_for('static', filename='img/copythistune_logobg.png') }}" style="max-height: 1.5rem">
+      </div>
+      <div id="iconSideBar" class="col-2"><i class="bi bi-x text-light" style="font-size: 1.5rem;line-height: 0;cursor: pointer;" onclick="emmaNavclose()"></i></div>
+    </div>
+  </div>
+  <div class="border-bottoms px-4 pt-3 bg-white" style="font-size: 1.1em;"><a href="#">Add money</a></div>
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><a href="#">Orders</a></div>
+  <div class=""></div>
+</div>
+
+   
+<div class="container-fluid" style="background-color: rgba(0,0,0,0.02); min-height: 100vh" onclick="emmaNavclose()">
+<div class="px-0 px-sm-3">
+    {% block body %} {% endblock %}
+<!-- <div style="position: absolute;left: 0; right: 0">
+            <div class="text-center">
+                <span>
+                  Copyright &copy; 2022 Phonie
+                </span>
+            </div>
+        </div> 
+ -->
+    </div>
+    </div>
+
+
+<script type="text/javascript">
+function emmaNavOpen() {
+  document.getElementById('iconSideBar').style.display = 'block';
+  document.getElementById('emmaNav').style.width = '250px';
+  // document.getElementById('iconSideBar').style.transition = '1s';
+  document.getElementById('mainNav').style.backgroundColor = '#0d0f10';
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+
+
+}
+
+function emmaNavclose() {
+  document.getElementById('iconSideBar').style.display = 'none';
+  document.getElementById('emmaNav').style.width = '0px';
+    document.body.style.backgroundColor = "rgb(255,255,255)";
+  document.getElementById('mainNav').style.backgroundColor = '#1a1d20';
+
+}
+</script>
+
+<script src="{{ url_for('static', filename='bootstrap-5.1.1/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+
+
+{% block script %} 
+
+{% endblock %}
+
+
+</body>
+</html>

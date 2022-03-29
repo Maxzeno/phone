@@ -1,0 +1,35 @@
+{% extends 'base_auth.html'%}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block description %}Copy this tune login page{% endblock %}
+{% block keywords %}CopyThisTune, login, page, create, smartlink , email{% endblock %}
+{% block author %}Nwaegunwa Emmanuel{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<div class="pb-5 pt-2">
+<div class=" pt-3">
+
+<div class="h2 border-bottom pb-3">{{ title }}</div>
+
+<div class="container mt-4">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <div class="alert alert-danger" role="alert">
+      {{ messages[0] }}
+      </div><br>
+  {% endif %}
+  {% endwith %}
+</div>
+
+<div class="container-fluid border rounded shadow-sm bg-white py-3">
+
+  <div class="fs-5 text-center">{{ msg | safe }}</div>
+                
+</div>
+</div>
+</div>
+
+{% endblock %}
