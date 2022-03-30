@@ -10,3 +10,13 @@ def index():
 	phones = Phones.query.all()
 	return render_template('index.html', phones=phones)
 
+
+@main.route('/product/<id>')
+def product(id):
+	try:
+		phone = Phones.query.filter_by(id=id).first()
+		phone.id
+		return render_template('product.html', phone=phone)
+	except:
+		return 'wronge product id'
+

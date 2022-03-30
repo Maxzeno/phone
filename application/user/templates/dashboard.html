@@ -2,7 +2,17 @@
 
 {% block title %}Dashboard{% endblock %}
 
+{% block style %} 
+<style>
+  .filter-btn{
+    background-color: #f8f9fa;
+  }
 
+  .filter-btn:hover{
+    background-color: #6c757d;
+  }
+</style>
+{% endblock %}
 
 {% block body %}
  <div class="row pt-md-5 pt-3">
@@ -15,6 +25,12 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-secondary" type="submit"><i class="bi bi-search"></i></button>
               </form>
+          </div>
+          <div class="py-3 border-bottom">
+            <div class="fw-bold text-black-50 mb-1">Brand</div>
+            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;">Infinix</span>
+            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;">Tecno</span>
+            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;">Itel</span>
           </div>
         </div>
       </div> 
@@ -29,7 +45,10 @@
           <div class="border mb-3 rounded shadow-sm text-dark bg-white">
             <div class="row">
               <div class="col-sm-4">
-              <div class="border-end" style="background-color: #f8f8f8">
+              <div class="d-none d-sm-block border-end h-100" style="background-color: #f8f8f8">
+                <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='img/jhjkkj.jpg') }}">
+              </div>
+              <div class="d-sm-none border-bottom shadow-sm h-100" style="background-color: #f8f8f8">
                 <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='img/jhjkkj.jpg') }}">
               </div>
               </div>

@@ -27,34 +27,49 @@
         <div class="fs-2 pb-3 d-none d-md-block">Shopping Cart</div>
 
         <div class="row">
-          <div class="col-lg-6">
+          {% for phone in phones %}
+          <div class="col-lg-12">
           <div class="border mb-3 rounded shadow-sm text-dark bg-white">
             <div class="row">
               <div class="col-sm-4">
-              <div class="border-end" style="background-color: #f8f8f8">
+               <div class="d-none d-sm-block border-end h-100" style="background-color: #f8f8f8">
+                <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='img/jhjkkj.jpg') }}">
+              </div>
+              <div class="d-sm-none border-bottom shadow-sm h-100" style="background-color: #f8f8f8">
                 <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='img/jhjkkj.jpg') }}">
               </div>
               </div>
               <div class="col-sm-8">
               <div class="pe-3 ps-sm-0 ps-3 py-3">
                 <div class="row">
-                <div class="fw-normal col-6">$<span style="font-size: 1.2rem;">10000</span></div>
+                  <div class=" col-10">
+                   <div class="mb-2">
+                    <span class="fw-normal" style="font-size: 1.15rem">{{ phone.description }}
+                    </span>
+                   </div>
+                  </div>
 
-                <div class="text-end col-6">
-                      
-                  <button class="btn btn-sm btn-success add-cart" id="{{ phone.id }}"><i class="bi bi-x text-dark" style="font-size: 2rem;cursor: pointer;" onclick="emmaNavclose()"></i></button>
-                </div>
-                </div>
-                <div class="mt-3 mb-2">
-                  <span class="fw-normal" style="font-size: 1.15rem">{{ phone.description }}
-                  </span>
+                  <div class="text-end col-2">
+                    <i class="bi bi-x text-dark" style="font-size: 2rem; line-height:0;cursor: pointer;" onclick="emmaNavclose()"></i>
+                  </div>
                 </div>
                 
+                <div class="fw-normal mb-2">$<span style="font-size: 1.2rem;">10000</span></div>
+
+                  <div class="btn-group my-2">
+                    <button class="btn btn-sm btn-success" type="button">+</button>
+                    <button class="btn btn-sm btn-light border-0 shadow-0" type="button">1</button>
+                    <button class="btn btn-sm btn-success" type="button">-</button>
+                  </div>
+
+                
+
               </div>
               </div>
             </div>
           </div>
           </div>
+          {% endfor %}
 
 
           </div>
