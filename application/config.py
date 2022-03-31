@@ -8,6 +8,8 @@ class Config(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    UPLOAD_FOLDER = '/uploads'
+    UPLOADED_IMAGES_DEST = '/uploads'
+
+    
 
 

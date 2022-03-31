@@ -29,12 +29,8 @@
         <div class="form-group">
           <input type="file" class="form-control" name="phone_image" value="phone image">
         {{ form.hidden_tag() }}
-          <!-- <select id="inputState" class="form-control">
-            <option>--Brand--</option>
-            <option>Apple</option>
-            <option>Samsung</option>
-          </select>
- -->          </div>
+        {{ wtf.form_field(form.image) }}
+        </div>
               
         <div class="mb-2">
           <button class="btn btn-danger" id="subBtn" type="submit">Create</button>

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, TextAreaField, FileField
 from wtforms.validators import InputRequired, Email, Length 
 
 
@@ -27,4 +27,7 @@ class ChangePasswordForm(FlaskForm):
 
 class EmptyForm(FlaskForm):
     pass
+
+class AddPhoneForm(FlaskForm):
+    image = FileField('image')
 
