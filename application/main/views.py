@@ -32,9 +32,9 @@ def test():
 	return render_template('test.html')
 
 
-@main.route('/test-post', methods=['POST'])
+@main.route('/test-data', methods=['POST'])
 def test_post():
-	_id = request.form.to_dict()
-	print(_id)
+	_id = request.form.get('name')
+	print(request.form.to_dict())
 	print('in fetch bros')
-	return {'msg':'good to go emma'}
+	return {'msg':'good to go ' + str(_id)}

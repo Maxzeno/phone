@@ -11,16 +11,16 @@ import os
 import math
 
 
-@user.route('/dashboard')
+@user.route('/explore')
 @login_required
-def dashboard():
+def explore():
 	page = request.args.get('page')
 	lm = 16
 	off = (int(page)-1)*lm  if page != None and page != 0 else 0
 	phones = Phones.query.limit(lm).offset(off).all()
 	l = Phones.query.count()
 	pages = math.ceil(l / lm) 
-	return render_template('dashboard.html', phones=phones, pages=pages, active_page=off if off >= 1 else 1)
+	return render_template('explore.html', phones=phones, pages=pages, active_page=off if off >= 1 else 1)
 
 
 @user.route('/add-phone', methods=["GET", "POST"])
