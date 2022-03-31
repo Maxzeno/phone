@@ -18,7 +18,6 @@ from email.message import EmailMessage
 # @limiter.limit("10 per minute")
 def signup():
 	form = SignupForm()
-	print(dir(form.data))
 
 	if request.method == 'POST' and form.validate_on_submit():
 		logout_user()
@@ -65,19 +64,22 @@ def confirm_token(user_id):
         s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
 
         token = s.dumps(user_id, salt='email-confirm')
-        #msg = EmailMessage()
-        #msg['Subject'] = 'Confirmation email'
-        #msg['From'] = 'nwaegunwaemmauel@gmail.com'
-        #msg['To'] = user.email
-        link = url_for('auth.confirm_email', token=token, _external=True)
+        if request.host != 'http://127.0.0.1:5000':
+	        msg = EmailMessage()
+	        msg['Subject'] = 'Confirmation email'
+	        msg['From'] = 'nwaegunwaemmauel@gmail.com'
+	        msg['To'] = user.email
+	        link = url_for('auth.confirm_email', token=token, _external=True)
 
-        #msg.set_content(f'Your confirmation link  {link}')
-        #with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-            # smtp.login('nwaegunwaemmauel@gmail.com', 'yllzkejaxzhmpeuc')
-            # smtp.send_message(msg)
-            # smtp.quit()
+	        msg.set_content(f'Your confirmation link  {link}')
+	        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+	            smtp.login('nwaegunwaemmauel@gmail.com', 'yllzkejaxzhmpeuc')
+	            smtp.send_message(msg)
+	            smtp.quit()
 
-            # return 'comfirmation email has been sent <a href="/confirm_token">click here to resend</a>'
+	            return '<h1>comfirmation email has been sent <a href="/confirm_token">click here to resend</a></h1>'
+						return render_template('status_msg.html', title='Confirm email', msg=f'Comfirm your email. <a href="/confirm-token/{user_id}">Resend</a>')
+
         
         with smtplib.SMTP('localhost', 1025) as smtp:
 
@@ -176,17 +178,20 @@ def forgot_password():
         if user and user.suspended == False:
             try:
                 token = s.dumps(user.id, salt='email-reset')
-                #msg = EmailMessage()
-                #msg['Subject'] = 'Confirmation email'
-                #msg['From'] = 'nwaegunwaemmauel@gmail.com'
-                #msg['To'] = email
-                link = url_for('auth.change_password', token=token, _external=True)
-                #msg.set_content(f'Your confirmation link  {link}')
-                #with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-                #   smtp.login('nwaegunwaemmauel@gmail.com', 'yllzkejaxzhmpeuc')
-                #    smtp.send_message(msg)
-                #    return 'comfirmation email has been sent <a href="/confirm_token">click here to resend</a>'
-                
+        		if request.host != 'http://127.0.0.1:5000':
+
+	                msg = EmailMessage()
+	                msg['Subject'] = 'Confirmation email'
+	                msg['From'] = 'nwaegunwaemmauel@gmail.com'
+	                msg['To'] = email
+	                link = url_for('auth.change_password', token=token, _external=True)
+	                msg.set_content(f'Your confirmation link  {link}')
+	                with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+						smtp.login('nwaegunwaemmauel@gmail.com', 'yllzkejaxzhmpeuc')
+						smtp.send_message(msg)
+                   		return render_template('status_msg.html', title='Comfirm email', msg='Comfirmation email has been sent to try again <a href="/change-password">click here</a>')
+
+	                
                 with smtplib.SMTP('localhost', 1025) as smtp:
 
                    subject = 'Confirmation email' 
