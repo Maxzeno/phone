@@ -59,36 +59,35 @@ def signup():
 @auth.route('/confirm-token/<user_id>')
 # @limiter.limit("10 per minute")
 def confirm_token(user_id):
-    user = User.query.filter_by(id=user_id).first()
-    if user and user.suspended == False:
-        s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+	user = User.query.filter_by(id=user_id).first()
+	if user and user.suspended == False:
+		s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
 
-        token = s.dumps(user_id, salt='email-confirm')
-        if request.host != 'http://127.0.0.1:5000':
-	        msg = EmailMessage()
-	        msg['Subject'] = 'Confirmation email'
-	        msg['From'] = 'nwaegunwaemmauel@gmail.com'
-	        msg['To'] = user.email
-	        link = url_for('auth.confirm_email', token=token, _external=True)
+		token = s.dumps(user_id, salt='email-confirm')
+		if request.host != 'http://127.0.0.1:5000':
+			msg = EmailMessage()
+			msg['Subject'] = 'Confirmation email'
+			msg['From'] = 'nwaegunwaemmauel@gmail.com'
+			msg['To'] = user.email
+			link = url_for('auth.confirm_email', token=token, _external=True)
 
-	        msg.set_content(f'Your confirmation link  {link}')
-	        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-	            smtp.login('nwaegunwaemmauel@gmail.com', 'yllzkejaxzhmpeuc')
-	            smtp.send_message(msg)
-	            smtp.quit()
+			msg.set_content(f'Your confirmation link  {link}')
+			with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+				smtp.login('nwaegunwaemmauel@gmail.com', 'yllzkejaxzhmpeuc')
+				smtp.send_message(msg)
+				smtp.quit()
 
-	            return '<h1>comfirmation email has been sent <a href="/confirm_token">click here to resend</a></h1>'
-						return render_template('status_msg.html', title='Confirm email', msg=f'Comfirm your email. <a href="/confirm-token/{user_id}">Resend</a>')
+				return render_template('status_msg.html', title='Confirm email', msg=f'Comfirm your email. <a href="/confirm-token/{user_id}">Resend</a>')
 
-        
-        with smtplib.SMTP('localhost', 1025) as smtp:
 
-            subject = 'Confirmation email' 
-            body = f'Your confirmation link  {link}'
-            msg = f'Subject: {subject}\n\n{body}'
-            smtp.sendmail('nwaegunwaemmauel@gmail.com', user.email, msg)
-            smtp.quit()
-            return render_template('status_msg.html', title='Comfirm email', msg=f'Comfirm your email. <a href="/confirm-token/{user_id}">Resend</a>')
+		with smtplib.SMTP('localhost', 1025) as smtp:
+
+			subject = 'Confirmation email' 
+			body = f'Your confirmation link  {link}'
+			msg = f'Subject: {subject}\n\n{body}'
+			smtp.sendmail('nwaegunwaemmauel@gmail.com', user.email, msg)
+			smtp.quit()
+			return render_template('status_msg.html', title='Comfirm email', msg=f'Comfirm your email. <a href="/confirm-token/{user_id}">Resend</a>')
 
 
        
@@ -167,46 +166,45 @@ def logout():
 @auth.route('/forgot-password', methods=['GET','POST'])
 # @limiter.limit("10 per minute")
 def forgot_password():
-    form = ForgotPasswordForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        email = form.email.data
-        s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+	form = ForgotPasswordForm()
+	if request.method == 'POST' and form.validate_on_submit():
+		email = form.email.data
+		s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
 
-        user = User.query.filter_by(email=email).first()
+		user = User.query.filter_by(email=email).first()
 
 
-        if user and user.suspended == False:
-            try:
-                token = s.dumps(user.id, salt='email-reset')
-        		if request.host != 'http://127.0.0.1:5000':
+		if user and user.suspended == False:
+			try:
+				token = s.dumps(user.id, salt='email-reset')
+				if request.host != 'http://127.0.0.1:5000':
 
-	                msg = EmailMessage()
-	                msg['Subject'] = 'Confirmation email'
-	                msg['From'] = 'nwaegunwaemmauel@gmail.com'
-	                msg['To'] = email
-	                link = url_for('auth.change_password', token=token, _external=True)
-	                msg.set_content(f'Your confirmation link  {link}')
-	                with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+					msg = EmailMessage()
+					msg['Subject'] = 'Confirmation email'
+					msg['From'] = 'nwaegunwaemmauel@gmail.com'
+					msg['To'] = email
+					link = url_for('auth.change_password', token=token, _external=True)
+					msg.set_content(f'Your confirmation link  {link}')
+					with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
 						smtp.login('nwaegunwaemmauel@gmail.com', 'yllzkejaxzhmpeuc')
 						smtp.send_message(msg)
-                   		return render_template('status_msg.html', title='Comfirm email', msg='Comfirmation email has been sent to try again <a href="/change-password">click here</a>')
+						return render_template('status_msg.html', title='Comfirm email', msg='Comfirmation email has been sent to try again <a href="/change-password">click here</a>')
+				
+				with smtplib.SMTP('localhost', 1025) as smtp:
 
-	                
-                with smtplib.SMTP('localhost', 1025) as smtp:
+					subject = 'Confirmation email' 
+					body = f'Your confirmation link  {link}'
+					msg = f'Subject: {subject}\n\n{body}'
+					smtp.sendmail('nwaegunwaemmauel@gmail.com', user.email, msg)
+					return render_template('status_msg.html', title='Comfirm email', msg='Comfirmation email has been sent to try again <a href="/change-password">click here</a>')
 
-                   subject = 'Confirmation email' 
-                   body = f'Your confirmation link  {link}'
-                   msg = f'Subject: {subject}\n\n{body}'
-                   smtp.sendmail('nwaegunwaemmauel@gmail.com', user.email, msg)
-                   return render_template('status_msg.html', title='Comfirm email', msg='Comfirmation email has been sent to try again <a href="/change-password">click here</a>')
+			except:
+				return render_template('status_msg.html', title='Email Server Off', msg="""We can't send confirmation email now <a href="/change-password">try again</a>""")
 
-            except:
-                return render_template('status_msg.html', title='Email Server Off', msg="""We can't send confirmation email now <a href="/change-password">try again</a>""")
+		else:
+			return 'not valid email'
 
-        else:
-            return 'not valid email'
-
-    return render_template('forgot_password.html', form=form)
+	return render_template('forgot_password.html', form=form)
 
 
 
