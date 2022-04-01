@@ -12,15 +12,25 @@ from flask_limiter.util import get_remote_address
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+# from flask_admin import Admin
+# from flask_admin.contrib.sqla import ModelView
+
+
 # from flask_uploads import configure_uploads, IMAGES, UploadSet
 
 
 
 db = SQLAlchemy()
+
+# from application.models import *
+
 limiter = Limiter(key_func=get_remote_address)
 login_manager = LoginManager()
 migrate = Migrate()
 bootstrap = Bootstrap()
+
+# admin = Admin()
+
 # images = UploadSet('images', IMAGES)
 # configure_uploads(app, images)
 
@@ -37,19 +47,20 @@ def create_app(config_class=Config):
 	migrate.init_app(app, db)
 	limiter.init_app(app)
 	bootstrap.init_app(app)
+	# admin.init_app(app)
 
 
 
 	from application.user import user
 	from application.auth import auth
 	from application.main import main
-	from application.admin import admin
+	from application.admin_user import admin_user
 
 
 	app.register_blueprint(user) 
 	app.register_blueprint(auth)
 	app.register_blueprint(main)
-	app.register_blueprint(admin)
+	app.register_blueprint(admin_user)
 
 	return app
 

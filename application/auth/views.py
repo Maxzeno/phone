@@ -141,7 +141,7 @@ def signin():
 		elif user.confirmed_email == True and check_password_hash(user.password, password) and user.suspended == False:  
 			login_user(user)
 			if session.get('next') == None:
-				return redirect(url_for('user.dashboard'))
+				return redirect(url_for('user.explore'))
 			elif session.get('next') != None:
 				return redirect(session.get('next'))
 
