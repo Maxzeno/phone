@@ -1,3 +1,15 @@
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+pgadmin4 4.26 requires Flask==1.0.2, but you have flask 2.1.1 which is incompatible.
+pgadmin4 4.26 requires Flask-Compress==1.4.0, but you have flask-compress 1.11 which is incompatible.
+pgadmin4 4.26 requires Flask-Login==0.4.1, but you have flask-login 0.6.0 which is incompatible.
+pgadmin4 4.26 requires Flask-Migrate==2.4.0, but you have flask-migrate 3.1.0 which is incompatible.
+pgadmin4 4.26 requires Flask-SQLAlchemy==2.4.1, but you have flask-sqlalchemy 2.5.1 which is incompatible.
+pgadmin4 4.26 requires Flask-WTF==0.14.3, but you have flask-wtf 1.0.1 which is incompatible.
+pgadmin4 4.26 requires passlib==1.7.2, but you have passlib 1.7.4 which is incompatible.
+pgadmin4 4.26 requires WTForms==2.2.1, but you have wtforms 3.0.1 which is incompatible.
+
+
+
 
 <!-- <nav class="navbar text-white bg-primary container-fluid">
   <span class="border-0 navbar-toggler pcursor" style="font-size:20px;" onclick="openNav()">&#9776;</span>

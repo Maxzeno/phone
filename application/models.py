@@ -1,8 +1,9 @@
 from flask_login import UserMixin, current_user
 from datetime import datetime 
-from application import db, login_manager
+from application import db, login_manager#, admin, ModelView
 
 
+# admin.add_view(ModelView(User, db.session))
         
 
 @login_manager.user_loader

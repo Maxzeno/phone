@@ -54,40 +54,43 @@ def signup():
 	return render_template('signup.html', form=form)
 
 
-
-
 @auth.route('/confirm-token/<user_id>')
 # @limiter.limit("10 per minute")
 def confirm_token(user_id):
-	user = User.query.filter_by(id=user_id).first()
-	if user and user.suspended == False:
-		s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+	try:
+		user = User.query.filter_by(id=user_id).first()
+		if user and user.suspended == False:
+			s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
 
-		token = s.dumps(user_id, salt='email-confirm')
-		if request.host != 'http://127.0.0.1:5000':
-			msg = EmailMessage()
-			msg['Subject'] = 'Confirmation email'
-			msg['From'] = 'nwaegunwaemmauel@gmail.com'
-			msg['To'] = user.email
-			link = url_for('auth.confirm_email', token=token, _external=True)
+			token = s.dumps(user_id, salt='email-confirm')
+			if request.host != 'http://127.0.0.1:5000':
+				msg = EmailMessage()
+				msg['Subject'] = 'Confirmation email'
+				msg['From'] = 'nwaegunwaemmauel@gmail.com'
+				msg['To'] = user.email
+				link = url_for('auth.confirm_email', token=token, _external=True)
 
-			msg.set_content(f'Your confirmation link  {link}')
-			with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-				smtp.login('nwaegunwaemmauel@gmail.com', 'yllzkejaxzhmpeuc')
-				smtp.send_message(msg)
+				msg.set_content(f'Your confirmation link  {link}')
+				with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+					smtp.login('nwaegunwaemmauel@gmail.com', 'yllzkejaxzhmpeuc')
+					smtp.send_message(msg)
+					smtp.quit()
+
+					return render_template('status_msg.html', title='Confirm email', msg=f'Comfirm your email. <a href="/confirm-token/{user_id}">Resend</a>')
+
+
+			with smtplib.SMTP('localhost', 1025) as smtp:
+
+				subject = 'Confirmation email' 
+				body = f'Your confirmation link  {link}'
+				msg = f'Subject: {subject}\n\n{body}'
+				smtp.sendmail('nwaegunwaemmauel@gmail.com', user.email, msg)
 				smtp.quit()
+				return render_template('status_msg.html', title='Comfirm email', msg=f'Comfirm your email. <a href="/confirm-token/{user_id}">Resend</a>')
 
-				return render_template('status_msg.html', title='Confirm email', msg=f'Comfirm your email. <a href="/confirm-token/{user_id}">Resend</a>')
+	except:
+		return render_template('status_msg.html', title='Technical Issues', msg=f'We experience a Technical Issues. <a href="/confirm-token/{user_id}">Retry</a>')
 
-
-		with smtplib.SMTP('localhost', 1025) as smtp:
-
-			subject = 'Confirmation email' 
-			body = f'Your confirmation link  {link}'
-			msg = f'Subject: {subject}\n\n{body}'
-			smtp.sendmail('nwaegunwaemmauel@gmail.com', user.email, msg)
-			smtp.quit()
-			return render_template('status_msg.html', title='Comfirm email', msg=f'Comfirm your email. <a href="/confirm-token/{user_id}">Resend</a>')
 
 
        
@@ -95,7 +98,6 @@ def confirm_token(user_id):
 # @limiter.limit("10 per minute")
 def confirm_email(token):
     s = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
-    logout_user()
     
     try:
         user_id = s.loads(token, salt='email-confirm', max_age=200000)
@@ -108,9 +110,6 @@ def confirm_email(token):
     except SignatureExpired:
         user_id = User.query.filter_by(id=user_id).first().id
         return render_template('status_msg.html', title='Token expired', msg=f'Token expired. <a href="/confirm-token/{user_id}">Resend</a>')
-
-
-
 
 
 
@@ -141,12 +140,13 @@ def signin():
 		elif user.confirmed_email == True and check_password_hash(user.password, password) and user.suspended == False:  
 			login_user(user)
 			if session.get('next') == None:
-				return redirect(url_for('user.explore'))
+				return redirect(url_for('user_section.explore'))
 			elif session.get('next') != None:
 				return redirect(session.get('next'))
 
 		else:
-			return "can't login"
+			return render_template('status_msg.html', title='Technical Issues', msg=f'We experience a Technical Issues. <a href="/confirm-token/{user_id}">Retry</a>')
+
 
 	session.pop('next', None)
 	session['next'] = request.args.get('next')
@@ -154,11 +154,11 @@ def signin():
 
 
 
-@auth.route('/logout')
+@auth.route('/signout')
 # @limiter.limit("10 per minute")
-def logout():
+def signout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.signin'))
 
 
 ##################################
@@ -202,7 +202,7 @@ def forgot_password():
 				return render_template('status_msg.html', title='Email Server Off', msg="""We can't send confirmation email now <a href="/change-password">try again</a>""")
 
 		else:
-			return 'not valid email'
+			return render_template('status_msg.html', title='Comfirm email', msg='Comfirmation email has been sent to try again <a href="/change-password">click here</a>')
 
 	return render_template('forgot_password.html', form=form)
 
