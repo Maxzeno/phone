@@ -1,14 +1,31 @@
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  // document.getElementById("mySidenav").style.opacity = "1";
-  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-  // document.body.style.cursor = 'pointer';
+ 
+function filtersAprear() {
+  let filters = document.querySelector('#filters');
+  if (filters.className.search('d-md-none') != -1){
+    filters.setAttribute('class','d-none px-3 mb-2');
+  }else if (filters.className.search('d-none') != -1){
+    filters.setAttribute('class','d-md-none px-3 mb-2');
+  }
 }
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  // document.getElementById("mySidenav").style.opacity = "0";
-  // document.body.style.backgroundColor = "rgba(0,0,0,.02)";
-  document.body.style.backgroundColor = "rgba(255,255,255)";
+document.querySelector('#filterIcon').addEventListener('click', filtersAprear);
+
+
+
+function emmaNavOpen() {
+  document.getElementById('iconSideBar').style.display = 'block';
+  document.getElementById('emmaNav').style.width = '250px';
+  // document.getElementById('iconSideBar').style.transition = '1s';
+  document.getElementById('mainNav').style.backgroundColor = '#0d0f10';
+    // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+
+
+}
+
+function emmaNavclose() {
+  document.getElementById('iconSideBar').style.display = 'none';
+  document.getElementById('emmaNav').style.width = '0px';
+    // document.body.style.backgroundColor = "rgb(255,255,255)";
+  document.getElementById('mainNav').style.backgroundColor = '#1a1d20';
 
 }

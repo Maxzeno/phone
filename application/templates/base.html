@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>{% block title %}{% endblock %}</title>
-
+    
   <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='icons-1.5.0/font/bootstrap-icons.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-5.1.1/dist/css/bootstrap.min.css') }}">
@@ -18,46 +18,27 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 
   <style>
-    .st{
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1085;
-      top: 0;
-      left: 0;
-      background-color: #111;
-      overflow-x: hidden;
-      transition: 0.5s;
-      }
 
-      .cart-badge:after{
-        content:attr(value);
-        font-size:12px;
-        color: #fff;
-        background: #bd2130;
-        border-radius:50%;
-        padding: 0 5px;
-        position:relative;
-        left:-8px;
-        top:-10px;
-        opacity:0.9;
-    }
   </style>
 
+  {% block style %} {% endblock %}
 </head>
 <body>
-<nav id="mainNav" style="background-color: #1a1d20" class="bg-dark container-fluid d-flex py-3">
+<nav id="mainNav" style="background-color: #1a1d20" class="bg-darks container-fluid d-flex py-3">
 
   <div class="text-light pe-4" style="cursor: pointer;" onclick="emmaNavOpen()">&#9776;</div>
-  <div><img src="{{ url_for('static', filename='img/phoniebg.png') }}" style="max-height: 1.5rem"></div>
+  <a href="/"><img src="{{ url_for('static', filename='img/phoniebg.png') }}" style="max-height: 1.5rem"></a>
   <div class="text-right text-light" style="position: absolute;right: 1rem">
-        <a href="#" class="emma-a-light"style="cursor: pointer;">
+        {% block icon %}{% endblock %}
+
+        <a href="/cart" class="emma-a-light"style="cursor: pointer;">
         <i class="bi bi-cart3 cart-badge" value="5" style="font-size: 1.3em; line-height: 0;"></i>
         </a>
         <a href="/signup" class="emma-a-light"style="cursor: pointer;">
-          <span class="ms-3"><i class="bi bi-person" value="5" style="font-size: 1.3em; line-height: 0;"></i></span>
-          <span class="ms-1">signup</span>
+          <span class=""><i class="bi bi-person" value="5" style="font-size: 1.3em; line-height: 0;"></i></span>
+          <span class="d-sm-inline d-none">signup</span>
           </a>
+
 {#
       <ul class="navbar-nav px-3">
 
@@ -92,8 +73,8 @@
 
           </div>
         </li>   
-      </ul>#}
-    
+      </ul>
+    #}
   </div>
 </nav>
 
@@ -107,52 +88,46 @@
     </div>
   </div>
   <div class="border-bottoms px-4 pt-3 bg-white" style="font-size: 1.1em;"><i class="bi bi-table me-2"></i><a href="/explore" class="emma-a">Explore</a></div>
+
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-cart3 me-2"></i><a href="#" class="emma-a">Cart</a></div>
   
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-cart4 me-2"></i><a href="/cart" class="emma-a">Cart</a></div>
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-telephone me-2"></i><a href="/cart" class="emma-a">Contact Us</a></div>
 
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-geo-alt me-2"></i><a href="#" class="emma-a">Addresses</a></div>
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-currency-dollar me-2"></i><a href="#" class="emma-a">Orders</a></div>
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-text-left me-2"></i><a href="#" class="emma-a">Blog</a></div>
 
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-card-heading me-2"></i><a href="#" class="emma-a">Profile</a></div>
   <div class="border-bottoms px-4 pt-3">POLICY</div>
 
   <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-megaphone me-2"></i><a href="#" class="emma-a">About Us</a></div>
   
   <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-people me-2"></i><a href="#" class="emma-a">Warranty Policy</a></div>
 
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-pen me-2"></i><a href="#" class="emma-a">Teams & Cobditions</a></div>
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-pen me-2"></i><a href="#" class="emma-a">Teams & Conditions</a></div>
   <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-patch-question me-2"></i><a href="#" class="emma-a">FAQs</a></div>
 
 </div>
- 
-<div class="container-fluid" style="background-color: rgba(0,0,0,0.02); min-height: 100vh" onclick="emmaNavclose()">
-<div class="px-0 px-sm-3">
+
+<div class="{% block container_fluid %}container-fluid{% endblock %}" style="background-color: rgba(0,0,0,0.02); min-height: 100vh" onclick="emmaNavclose()">
     {% block body %} {% endblock %}
+
 </div>
-</div>
-<div class="" style="background-color: #1a1d20">
-<footer class="text-light px-0 container-sm fs-5"> 
-    
-<div class="">
+
+<div>
+
+<footer class="fs-6 text-light" style="background-color: #111">
+
+<div class="container">
 
       <div class="pt-4">
         <div class="row">
             <!--Footer Main Pages -->
             <div class="col-md-5 col-sm-5 col-lg-3 col-6 pb-5">
                 <h4 class=" mb-4 ">Info</h4>
-                <div class="mb-0 fs-6">                       
-                   <a href="#" class="emma-a-light d-block pb-1"> Home</a>
-                    
-                    <a href="#" class="emma-a-light d-block pb-1">About</a>
-                    
-                    <a href="#" class="emma-a-light d-block pb-1">FAQ</a> 
-                    
-                    <a href="#" class="emma-a-light d-block pb-1">Costumer care</a> 
-                    
-                    <a href="#" class="emma-a-light d-block pb-1">Blog</a> 
-                    
-                    <a href="#" class="emma-a-light d-block pb-1">Help</a> 
-                    
+                <div class="mb-0">                       
+                    <a href="#" class="emma-a-light d-block mt-2">Home</a>
+                    <a href="#" class="emma-a-light d-block mt-2">About</a>
+                    <a href="#" class="emma-a-light d-block mt-2">FAQ</a> 
+                    <a href="#" class="emma-a-light d-block mt-2">Contact Us</a> 
+                    <a href="#" class="emma-a-light d-block mt-2">Blog</a> 
                     
                 </div>
             </div>
@@ -176,7 +151,7 @@
             </div>
 
             <!-- Footer About Text-->
-            <div class="col-md-6 col-sm-11 col-lg-5 mx-auto">
+            <div class="col-md-6 col-sm-11 col-lg-5">
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls pb-2">
 
@@ -197,50 +172,25 @@
   </div>
 </div>
 
+
 </footer>
-</div>
 
-    <div class="text-center" style="background-color: rgb(26, 29, 32, 0.2)">
-      <div class="container">
-        <span>Copyright &copy; 2022 phonie | <a href="#" class="emma-a">terms of service</a> | <a href="#" class="emma-a"> privacy and cookies </a> 
+
+
+<div style="position: absolute;left: 0; right: 0; background-color: rgba(0,0,0,0.2);">
+    <div class="text-center">
+          <span>Copyright &copy; 2022 phonie | <a href="#" class="emma-a">terms of service</a> | <a href="#" class="emma-a"> privacy and cookies </a>
         </span>
-      </div>
     </div>
+</div>
+</div> 
 
-
-
-
-<!-- <div style="position: absolute;left: 0; right: 0">
-            <div class="text-center">
-                <span>
-                  Copyright &copy; 2022 Phonie
-                </span>
-            </div>
-        </div> 
- -->
-    </div>
-    </div>
 
 
 <script type="text/javascript">
-function emmaNavOpen() {
-  document.getElementById('iconSideBar').style.display = 'block';
-  document.getElementById('emmaNav').style.width = '250px';
-  // document.getElementById('iconSideBar').style.transition = '1s';
-  document.getElementById('mainNav').style.backgroundColor = '#0d0f10';
-    // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 
-
-}
-
-function emmaNavclose() {
-  document.getElementById('iconSideBar').style.display = 'none';
-  document.getElementById('emmaNav').style.width = '0px';
-    // document.body.style.backgroundColor = "rgb(255,255,255)";
-  document.getElementById('mainNav').style.backgroundColor = '#1a1d20';
-
-}
 </script>
+
 
 <script src="{{ url_for('static', filename='bootstrap-5.1.1/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='bootstrap-4.0.0/dist/js/bootstrap.min.js') }}"></script>

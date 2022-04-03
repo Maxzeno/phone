@@ -19,28 +19,27 @@
 
 
   <style>
-    .st{
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1085;
-      top: 0;
-      left: 0;
-      background-color: #111;
-      overflow-x: hidden;
-      transition: 0.5s;
-      }
+
   </style>
 </head>
 <body>
 <nav id="mainNav" style="background-color: #1a1d20" class="bg-darks container-fluid d-flex py-3">
 
   <div class="text-light pe-4" style="cursor: pointer;" onclick="emmaNavOpen()">&#9776;</div>
-  <div><img src="{{ url_for('static', filename='img/phoniebg.png') }}" style="max-height: 1.5rem"></div>
+  <a href="/"><img src="{{ url_for('static', filename='img/phoniebg.png') }}" style="max-height: 1.5rem"></a>
   <div class="text-right text-light" style="position: absolute;right: 1rem">
-        <a href="{% if request.path == '/signup'%}/signin{% else %}signup{% endif %}" class="emma-a-light"style="cursor: pointer;">
+        <a href="{% if request.path == '/signup' or request.path.startswith('/confirm-token') 
+            or request.path.startswith('/confirm-email')
+            or request.path.startswith('/forgot-password')
+            or request.path.startswith('/change-password') %}
+          signin{% else %}signup{% endif %}" class="emma-a-light"style="cursor: pointer;">
           <span class="ms-3"><i class="bi bi-person" value="5" style="font-size: 1.3em; line-height: 0;"></i></span>
-          <span class="ms-1">{% if request.path == '/signup'%}signin{% else %}signup{% endif %}</span>
+          <span class="ms-1">
+            {% if request.path == '/signup' or request.path.startswith('/confirm-token') 
+            or request.path.startswith('/confirm-email')
+            or request.path.startswith('/forgot-password')
+            or request.path.startswith('/change-password') %}
+          signin{% else %}signup{% endif %}</span>
           </a>
 {#
       <ul class="navbar-nav px-3">
@@ -90,20 +89,20 @@
     </div>
   </div>
   <div class="border-bottoms px-4 pt-3 bg-white" style="font-size: 1.1em;"><i class="bi bi-table me-2"></i><a href="/explore" class="emma-a">Explore</a></div>
+
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-cart3 me-2"></i><a href="#" class="emma-a">Cart</a></div>
   
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-cart4 me-2"></i><a href="/cart" class="emma-a">Cart</a></div>
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-telephone me-2"></i><a href="/cart" class="emma-a">Contact Us</a></div>
 
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-geo-alt me-2"></i><a href="#" class="emma-a">Addresses</a></div>
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-currency-dollar me-2"></i><a href="#" class="emma-a">Orders</a></div>
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-text-left me-2"></i><a href="#" class="emma-a">Blog</a></div>
 
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-card-heading me-2"></i><a href="#" class="emma-a">Profile</a></div>
   <div class="border-bottoms px-4 pt-3">POLICY</div>
 
   <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-megaphone me-2"></i><a href="#" class="emma-a">About Us</a></div>
   
   <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-people me-2"></i><a href="#" class="emma-a">Warranty Policy</a></div>
 
-  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-pen me-2"></i><a href="#" class="emma-a">Teams & Cobditions</a></div>
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-pen me-2"></i><a href="#" class="emma-a">Teams & Conditions</a></div>
   <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-patch-question me-2"></i><a href="#" class="emma-a">FAQs</a></div>
 
 </div>
@@ -122,23 +121,7 @@
 
 
 <script type="text/javascript">
-function emmaNavOpen() {
-  document.getElementById('iconSideBar').style.display = 'block';
-  document.getElementById('emmaNav').style.width = '250px';
-  // document.getElementById('iconSideBar').style.transition = '1s';
-  document.getElementById('mainNav').style.backgroundColor = '#0d0f10';
-    // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 
-
-}
-
-function emmaNavclose() {
-  document.getElementById('iconSideBar').style.display = 'none';
-  document.getElementById('emmaNav').style.width = '0px';
-    // document.body.style.backgroundColor = "rgb(255,255,255)";
-  document.getElementById('mainNav').style.backgroundColor = '#1a1d20';
-
-}
 </script>
 
 <script src="{{ url_for('static', filename='bootstrap-5.1.1/dist/js/bootstrap.min.js') }}"></script>
