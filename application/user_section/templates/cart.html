@@ -1,4 +1,4 @@
-{% extends 'base_user.html'%}
+{% extends 'base.html'%}
 
 {% block title %}Shopping Cart{% endblock %}
 
@@ -13,7 +13,7 @@
         <div class="bg-white rounded shadow-sm px-3 py-3 border">
           <div class="fs-3 border-bottom text-center">Purchase Items</div>
           <div class="py-3 text-center">
-             {{ l }} {% if l > 1 %} items {% else %} item {% endif %}<span class="mx-2" style="font-size: 1.2rem">-</span>750.00
+             <span class="cart-len">{{ l }}</span> {% if l > 1 %} items {% else %} item {% endif %}<span class="mx-2" style="font-size: 1.2rem">-</span> $<span class="totalAmount">{{ phones | total }}</span>
           </div>
           <div class="pb-3">
             <button class="btn btn-sm btn-success w-100">Buy now</button>
@@ -33,16 +33,20 @@
             <div class="row">
               <div class="col-sm-4">
               <div class="d-none d-sm-block border-end h-100" style="background-color: #f8f8f8">
-                <a href="/product/{{ phone.id }}" class="emma-a"><img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='img/jhjkkj.jpg') }}"></a>
+                <a href="/product/{{ phone.id }}" class="emma-a">
+                 <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='uploads/'+phone.phone_image_front) }}">
+              </a>
               </div>
-              <div class="d-sm-none border-bottom shadow-sm h-100" style="background-color: #f8f8f8">
-                <a href="/product/{{ phone.id }}" class="emma-a"><img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='img/jhjkkj.jpg') }}"></a>
+              <div class="d-sm-none  border-bottom shadow-sm h-100" style="background-color: #f8f8f8">
+                <a href="#" charset="emma-a">
+                <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='uploads/'+phone.phone_image_front) }}">
+              </a>
               </div>
               </div>
               <div class="col-sm-8">
               <div class="pe-3 ps-sm-0 ps-3 py-3">
                 <div class="row">
-                <div class="fw-normal col-6">$<span style="font-size: 1.2rem;">10000</span></div>
+                <div class="fw-normal col-6">$<span style="font-size: 1.2rem;">{{ phone.price | price }}</span></div>
 
                 <div class="text-end col-6">
                   <button class="btn btn-sm btn-success send-cart" value="{{ phone.id }}" id="{{ phone.id }}">Remove</button>
@@ -74,7 +78,7 @@
         <div class="bg-white rounded shadow-sm px-3 py-3 border">
           <div class="fs-3 border-bottom text-center">Purchase Items</div>
           <div class="py-3 text-center">
-             {{ l }} {% if l > 1 %} items {% else %} item {% endif %}<span class="mx-2" style="font-size: 1.2rem">-</span>750.00
+             <span class="cart-len">{{ l }}</span> {% if l > 1 %} items {% else %} item {% endif %}<span class="mx-2" style="font-size: 1.2rem">-</span> $<span class="totalAmount">{{ phones | total }}</span>
           </div>
           <div class="pb-3">
             <button class="btn btn-sm btn-success w-100">Buy now</button>
@@ -147,12 +151,24 @@ $(function(){
             if (data.status == 'add'){
                 $('#' + data.msg).text("Remove");
                 // $('#' + data.msg).hide();
-
+                document.querySelectorAll('.cart-len').forEach(e =>{
+                  e.innerText = String(Number(e.innerText) + 1)
+                });
+                document.querySelector('.cart-badge').value = document.querySelector('.cart-badge').value + 1 
+                document.querySelectorAll('.totalAmount').forEach(e =>{
+                  e.innerText = String(Number(e.innerText) + Number(data.totalAmount))
+                });
             }else if (data.status == 'remove'){
                 $('#' + data.msg).text("Add to Cart");
-                $('#' + data.msg + 'col').hide();
+                $('#' + data.msg + 'col').hide(10);
 
-
+                document.querySelectorAll('.cart-len').forEach(e =>{
+                  e.innerText = String(Number(e.innerText) - 1)
+                });
+                document.querySelector('.cart-badge').value = document.querySelector('.cart-badge').value - 1
+                document.querySelectorAll('.totalAmount').forEach(e =>{
+                  e.innerText = String(Number(e.innerText) - Number(data.totalAmount))
+                });
 
             }else{
 

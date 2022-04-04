@@ -1,4 +1,4 @@
-{% extends 'base_user.html'%}
+{% extends 'base.html'%}
 
 {% block title %}Product{% endblock %}
 
@@ -13,7 +13,7 @@
          <div class="bg-white rounded shadow-sm px-3 py-3 border">
           <div class="fs-3 border-bottom text-center">Product detail</div>
           <div class="py-3 text-center">
-             1 item<span class="mx-2" style="font-size: 1.2rem">-</span>$<span style="font-size: 1.2rem;">10000</span>
+              <span class="numItem">1</span> item<span class="mx-2" style="font-size: 1.2rem">-</span>$<span>{{ phone.price | price }}</span>
           </div>
           <div class="pb-3 d-flex">
             <button class="btn btn-sm btn-success w-100 me-2">Buy Now</button>
@@ -33,16 +33,20 @@
             <div class="row">
               <div class="col-sm-4">
               <div class="d-none d-sm-block border-end h-100" style="background-color: #f8f8f8">
-                <a href="/product/{{ phone.id }}" class="emma-a"><img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='img/jhjkkj.jpg') }}"></a>
+                <a href="/product/{{ phone.id }}" class="emma-a">
+                 <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='uploads/'+phone.phone_image_front) }}">
+              </a>
               </div>
-              <div class="d-sm-none border-bottom shadow-sm h-100" style="background-color: #f8f8f8">
-                <a href="/product/{{ phone.id }}" class="emma-a"><img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='img/jhjkkj.jpg') }}"></a>
+              <div class="d-sm-none  border-bottom shadow-sm h-100" style="background-color: #f8f8f8">
+                <a href="#" charset="emma-a">
+                <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='uploads/'+phone.phone_image_front) }}">
+              </a>
               </div>
               </div>
               <div class="col-sm-8">
               <div class="pe-3 ps-sm-0 ps-3 py-3">
                 <div class="row">
-                <div class="fw-normal col-6">$<span style="font-size: 1.2rem;">10000</span></div>
+                <div class="fw-normal col-6">$<span style="font-size: 1.2rem;">{{ phone.price | price }}</span></div>
 
                 <div class="text-end col-6">
                   <button class="btn btn-sm btn-success send-cart" value="{{ phone.id }}" id="{{ phone.id }}">{% if phone.id in lst_cart %} Remove {% else %} Add to Cart {% endif %}</button>
@@ -74,7 +78,7 @@
         <div class="bg-white rounded shadow-sm px-3 py-3 border">
           <div class="fs-3 border-bottom text-center">Product detail</div>
           <div class="py-3 text-center">
-             1 item<span class="mx-2" style="font-size: 1.2rem">-</span>$<span style="font-size: 1.2rem;">10000</span>
+             <span class="numItem">1</span> item<span class="mx-2" style="font-size: 1.2rem">-</span>$<span>{{ phone.price | price }}</span>
           </div>
           <div class="pb-3 d-flex">
             <button class="btn btn-sm btn-success w-100 me-2">Buy Now</button>
@@ -99,15 +103,24 @@
 
 function plusBtn(){
   quantity = Number(document.querySelector('#quantity').innerText);
-  document.querySelector('#quantity').innerText = String(quantity + 1)
+  numItems = document.querySelectorAll('.numItem');
+  document.querySelector('#quantity').innerText = String(quantity + 1);
+
+  numItems.forEach(numItem => {
+    numItem.innerText = String(Number(numItem.innerText) + 1)
+  })
 }  
 
 function minusBtn(){
   quantity = Number(document.querySelector('#quantity').innerText);
+  numItem = document.querySelectorAll('.numItem');
   if (quantity === 1){
 
   } else{
-    document.querySelector('#quantity').innerText = String(quantity - 1)
+    document.querySelector('#quantity').innerText = String(quantity - 1);
+    numItems.forEach(numItem => {
+      numItem.innerText = String(Number(numItem.innerText) - 1)
+    })
   }
 }
 
@@ -134,11 +147,12 @@ $(function(){
             // console.log(data);
             if (data.status == 'add'){
                 $('#' + data.msg).text("Remove");
+                document.querySelector('.cart-badge').value = document.querySelector('.cart-badge').value + 1
                 // $('#' + data.msg).hide();
 
             }else if (data.status == 'remove'){
                 $('#' + data.msg).text("Add to Cart");
-                $('#' + data.msg + 'col').hide();
+                document.querySelector('.cart-badge').value = document.querySelector('.cart-badge').value - 1
 
 
 

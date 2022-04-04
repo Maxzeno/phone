@@ -47,14 +47,42 @@ def add_phone():
 @user_section.route('/cart')
 def cart():
 	cart = request.cookies.get('cart')
-	dict_cart = json.loads(cart)
-	lst_cart = list(dict_cart.keys())
-
-	cart = request.cookies.get('cart')
-	dict_cart = json.loads(cart)
+	if cart:
+		dict_cart = json.loads(cart)
+		lst_cart = list(dict_cart.keys())
+	else:
+		lst_cart = []
+		dict_cart = {}
 
 	phones = Phones.query.filter(Phones.id.in_(lst_cart)).all()
 	return render_template('cart.html', phones=phones, l=len(dict_cart))
+
+
+@user_section.route('/send-cart', methods=['POST'])
+def send_cart():
+	_id = request.form.get('id')
+	phone = Phones.query.filter_by(id=_id).first()
+
+	number = request.form.get('number')
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = json.loads(cart)
+		if dict_cart.get(_id) and dict_cart.get(_id) == number:
+			del dict_cart[_id]
+			resp = make_response(jsonify({'msg': _id, 'status': 'remove', 'totalAmount':phone.price}))
+			resp.set_cookie('cart', json.dumps(dict_cart), max_age=31557600)
+
+			return resp
+
+		dict_cart[_id] = number
+		resp = make_response(jsonify({'msg': _id, 'status': 'add', 'totalAmount':phone.price}))
+		resp.set_cookie('cart', json.dumps(dict_cart), max_age=31557600)
+		return resp
+
+	resp = make_response(jsonify({'msg': _id, 'status': 'add', 'totalAmount':phone.price}))
+	resp.set_cookie('cart', json.dumps({_id: number}), max_age=31557600)
+	return resp
+
 
 
 @user_section.route('/subdomain', subdomain='test')

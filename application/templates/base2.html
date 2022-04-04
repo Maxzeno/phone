@@ -2,62 +2,206 @@
 <html lang="en">
 
 <head>
-		<meta charset="UTF-8">
-		<meta name="description" content="{% block description %} {% endblock %}">
-		<meta name="keywords" content="{% block keywords %} {% endblock %}">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta name="author" content="{% block author %} {% endblock %}">
+    <meta charset="UTF-8">
+    <meta name="description" content="hhhhh">
+    <meta name="keywords" content="hhh">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-		<title> {% block title %} {% endblock %} </title>
-		<!-- note googles jquery doesn't work while this bootsrap jquery is working so i put it up here so they both will work -->
+    <title>{% block title %}{% endblock %}</title>
+    
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='icons-1.5.0/font/bootstrap-icons.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-5.1.1/dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-4.0.0/dist/css/bootstrap.min.css') }}">
 
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 
-		<!-- google fonts -->
-		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <style>
 
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+  </style>
 
-
-		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
-
-		<!-- the icon -->
-		<link rel="icon" type="image/x-icon" href="{{url_for('static', filename='img/copythistuneicon.png')}}" >
-		<!-- bootstrap -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-		<!-- my own css styles -->
-		
-		<script src="{{url_for('static', filename='jquery-3.3.1.min.js')}}"></script>
-
-
-
-
-		<!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-
-		<!-- <link href="{{url_for('static', filename='bootstrap-5.1.1/bootstrap-5.1.1/dist/css/bootstrap.min.css')}}" rel="stylesheet"> -->
-
-		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap.min.css')}}">
+  {% block style %} {% endblock %}
 </head>
-
 <body>
+<nav id="mainNav" style="background-color: #1a1d20" class="bg-darks container-fluid d-flex py-3">
 
-{% block body %}
+  <div class="text-light pe-4" style="cursor: pointer;" onclick="emmaNavOpen()">&#9776;</div>
+  <a href="/"><img src="{{ url_for('static', filename='img/phoniebg.png') }}" style="max-height: 1.5rem"></a>
+  <div class="text-right text-light" style="position: absolute;right: 1rem">
+        {% block icon %}{% endblock %}
+
+        <a href="/cart" class="emma-a-light"style="cursor: pointer;">
+        <i class="bi bi-cart3 cart-badge" id="cart" value="{{ l }}" style="font-size: 1.3em; line-height: 0;"></i>
+        </a>
+        <a href="/signup" class="emma-a-light"style="cursor: pointer;">
+          <span class=""><i class="bi bi-person" value="5" style="font-size: 1.3em; line-height: 0;"></i></span>
+          <span class="d-sm-inline d-none">signup</span>
+          </a>
+
+{#
+      <ul class="navbar-nav px-3">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             
+            <span>
+              <img alt="" class="" src="{{ url_for('static',filename='image/music1.jpeg') }}" style="width: 30px; height: 30px; border-radius: 2rem;border: 2px solid #6c757d">
+            </span>
+            <span class="fs-6">
+             {% block artist_name %} {{ session['artist_name'] }} {% endblock %}
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right position-absolute shadow-sm py-0 mt-1" aria-labelledby="dropdown01">
+
+            <a class="dropdown-item border-bottom px-0 pl-3 py-2" href="/profile">
+              <i class="bi bi-person" style="font-size: 1.3em; line-height: 0;"></i>
+              <span class="ml-2">Profile</span>
+            </a>
+            <a class="dropdown-item border-bottom px-0 pl-3 py-2" href="/contact-us">
+              <i class="bi bi-telephone" style="font-size: 1.2em; line-height: 0;"></i>
+              <span class="ml-2">Contact</span>
+            </a>
+            <a class="dropdown-item border-bottom px-0 pl-3 py-2" href="#">
+              <i class="bi bi-gear" style="font-size: 1.3em; line-height: 0;"></i>
+              <span class="ml-2">Settings</span>
+            </a>
+            <a class="dropdown-item px-0 pl-3 py-2" href="/logout">
+              <i class="bi bi-power" style="font-size: 1.3em; line-height: 0;"></i>
+              <span class="ml-2">Logout</span>
+            </a>
+
+          </div>
+        </li>   
+      </ul>
+    #}
+  </div>
+</nav>
+
+<div id="emmaNav" class="shadow-sm st bg-white border-rights border-darks">
+  <div class="border-bottom px-4 py-3"  style="background-color: #1a1d20">
+    <div class="row">
+      <div  class="col-10">
+        <img class="img-fluid" src="{{ url_for('static', filename='img/phoniebg.png') }}" style="max-height: 1.5rem">
+      </div>
+      <div id="iconSideBar" class="col-2"><i class="bi bi-x text-light" style="font-size: 1.5rem;line-height: 0;cursor: pointer;" onclick="emmaNavclose()"></i></div>
+    </div>
+  </div>
+  <div class="border-bottoms px-4 pt-3 bg-white" style="font-size: 1.1em;"><i class="bi bi-table me-2"></i><a href="/explore" class="emma-a">Explore</a></div>
+
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-cart3 me-2"></i><a href="#" class="emma-a">Cart</a></div>
+  
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-telephone me-2"></i><a href="/cart" class="emma-a">Contact Us</a></div>
+
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-text-left me-2"></i><a href="#" class="emma-a">Blog</a></div>
+
+  <div class="border-bottoms px-4 pt-3">POLICY</div>
+
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-megaphone me-2"></i><a href="#" class="emma-a">About Us</a></div>
+  
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-people me-2"></i><a href="#" class="emma-a">Warranty Policy</a></div>
+
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-pen me-2"></i><a href="#" class="emma-a">Teams & Conditions</a></div>
+  <div class="border-bottoms px-4 pt-2 bg-white" style="font-size: 1.1em;"><i class="bi bi-patch-question me-2"></i><a href="#" class="emma-a">FAQs</a></div>
+
+</div>
+
+<div class="{% block container_fluid %}container-fluid{% endblock %}" style="background-color: rgba(0,0,0,0.02); min-height: 100vh" onclick="emmaNavclose()">
+    {% block body %} {% endblock %}
+
+</div>
+
+<div>
+
+<footer class="fs-6 text-light" style="background-color: #111">
+
+<div class="container">
+
+      <div class="pt-4">
+        <div class="row">
+            <!--Footer Main Pages -->
+            <div class="col-md-5 col-sm-5 col-lg-3 col-6 pb-5">
+                <h4 class=" mb-4 ">Info</h4>
+                <div class="mb-0">                       
+                    <a href="#" class="emma-a-light d-block mt-2">Home</a>
+                    <a href="#" class="emma-a-light d-block mt-2">About</a>
+                    <a href="#" class="emma-a-light d-block mt-2">FAQ</a> 
+                    <a href="#" class="emma-a-light d-block mt-2">Contact Us</a> 
+                    <a href="#" class="emma-a-light d-block mt-2">Blog</a> 
+                    
+                </div>
+            </div>
+
+                    <!-- Footer Social Icons-->
+            <div class="col-md-5 col-sm-5 col-lg-3 col-6 pb-5">
+                <h4 class=" mb-4 pl-2">Follow</h4>
+                 
+                <a href="#"><img src="{{url_for('static', filename='img/facebookicon.png')}}"></a>
+    
+                <a href="#"><img src="{{url_for('static', filename='img/twittericon.png')}}"></a>
+            
+                <a href="#"><img src="{{url_for('static', filename='img/instagramicon.png')}}"></a>
+            
+                <a href="#"><img src="{{url_for('static', filename='img/snapchaticon.png')}}"></a>
+           
+                <a href="#"><img src="{{url_for('static', filename='img/tiktokicon.png')}}"></a>
+        
+                <a href="#"><img src="{{url_for('static', filename='img/trillericon.png')}}"></a>
+            
+            </div>
+
+            <!-- Footer About Text-->
+            <div class="col-md-6 col-sm-11 col-lg-5">
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls pb-2">
+
+                        <label>Subscribe</label> <br>
+                        <div class="d-inline-block">
+                        <input class="form-control mr-1 mb-2" id="inputEmailList" style="width: 200px" type="email_list"  name="email_list" placeholder="Join Our Email List" />
+                        </div>
+
+                        <button class="btn btn-danger">Submit</button>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+
+  </div>
+  </div>
+</div>
+
+
+</footer>
+
+
+
+<div style="position: absolute;left: 0; right: 0; background-color: rgba(0,0,0,0.2);">
+    <div class="text-center">
+          <span>Copyright &copy; 2022 phonie | <a href="#" class="emma-a">terms of service</a> | <a href="#" class="emma-a"> privacy and cookies </a>
+        </span>
+    </div>
+</div>
+</div> 
+
+
+
+<script type="text/javascript">
+
+</script>
+
+
+<script src="{{ url_for('static', filename='bootstrap-5.1.1/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap-4.0.0/dist/js/bootstrap.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+{% block script %} 
 
 {% endblock %}
 
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="
-		sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-		
 
-		<script type="text/javascript" src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
-
-
-
-
-	 
 </body>
 </html>

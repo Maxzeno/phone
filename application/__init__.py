@@ -62,6 +62,17 @@ def create_app(config_class=Config):
 	def col_adder(id):
 	    return str(id) + 'col'
 
+	@app.template_filter('price')
+	def price(amount):
+	    return int(amount) if amount == int(amount) else amount
+
+	@app.template_filter('total')
+	def total(obj):
+		tol = 0 
+		for phone in obj:
+			tol += phone.price
+		return int(tol) if tol == int(tol) else tol
+
 	return app
 
 
