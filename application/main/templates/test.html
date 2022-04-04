@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Fetch API
+	</title>
+
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+
+</head>
+<body>
+
+<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+
+
+<button class="add-cart" value="chiboy">btn</button>
+<button class="add-cart" value="emmanuel">btn</button>
+<button class="add-cart" value="yhhh">btn</button>
+
+
+
+
+<script>
+
+
+// document.querySelector('div').forEach(item => {
+  // item.addEventListener('click', e => {
+  //   fetch("http://127.0.0.1:5000/test-data",
+  // {"method":'POST',
+  // "body":JSON.stringify({"name":'chi'}),
+  // // headers: {'Content-Type':'application/json',},
+
+// })  
+// .then(response => response.json())     
+// .then(json => console.log(json)); 
+// // console.log(item.value)
+// // e.preventDefault()
+//   })
+// })
+
+
+
+
+</script>
+
+<script>
+	    
+$(function(){
+    $('.add-cart').click(function(e){
+        // var username = $('#username').val();
+        // console.log(e)
+        // console.log($(this))
+        $.ajax({
+            url: '/test-data',
+            data: {'name': $(this).val()},
+            type: 'POST',
+            success: function(response){
+                console.log(response);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        }).done( function(data){
+            console.log(data);
+            // if (data.status == 'ok'){
+            // 	console.log(msg)
+                 // $('#theTitle').text(data.msg);
+                // $("#theTitle").css("background-color", "red");
+                // $("#username").css({"border": "1px solid #28a745 "});
+                // $('#subBtn').prop("disabled", false);
+                // $('#theTitle').hide();
+
+            // }else{
+            // 		console.log(msg)
+                // $("#username").css({"border": "1px solid #dc3545 "});
+                // $('#subBtn').prop("disabled", true);
+
+            // }
+        });
+        e.preventDefault();
+    });
+});
+
+  
+</script>
+</body>
+</html>
