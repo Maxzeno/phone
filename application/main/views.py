@@ -5,6 +5,7 @@ from application.models import *
 # from application import limiter
 from application.main import main
 import math
+import json
 
 @main.route('/')
 def index():
@@ -14,17 +15,57 @@ def index():
 	phones = Phones.query.limit(lm).offset(off).all()
 	l = Phones.query.count()
 	pages = math.ceil(l / lm) 
-	return render_template('index.html', phones=phones, pages=pages, active_page=int(page) if page != None else 1)
+
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = json.loads(cart)
+		list_cart = list(dict_cart.keys())
+		lst_cart = [ int(i) for i in list_cart ]
+	else:
+		lst_cart = {}
+
+	return render_template('index.html', phones=phones, pages=pages, active_page=int(page) if page != None else 1, lst_cart=lst_cart, l=len(lst_cart))
 
 
 @main.route('/product/<id>')
 def product(id):
-	try:
-		phone = Phones.query.filter_by(id=id).first()
-		phone.id
-		return render_template('product.html', phone=phone)
-	except:
-		return 'wronge product id'
+	phone = Phones.query.filter_by(id=id).first()
+	if not phone:
+		return 'no product with this id'
+
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = json.loads(cart)
+		list_cart = list(dict_cart.keys())
+		lst_cart = [ int(i) for i in list_cart ]
+	else:
+		lst_cart = {}
+		
+	return render_template('product.html', lst_cart=lst_cart, phone=phone, l=len(lst_cart))
+
+@main.route('/send-cart', methods=['POST'])
+def send_cart():
+	_id = request.form.get('id')
+
+	number = request.form.get('number')
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = json.loads(cart)
+		if dict_cart.get(_id) and dict_cart.get(_id) == number:
+			del dict_cart[_id]
+			resp = make_response(jsonify({'msg': _id, 'status': 'remove'}))
+			resp.set_cookie('cart', json.dumps(dict_cart), max_age=31557600)
+
+			return resp
+
+		dict_cart[_id] = number
+		resp = make_response(jsonify({'msg': _id, 'status': 'add'}))
+		resp.set_cookie('cart', json.dumps(dict_cart), max_age=31557600)
+		return resp
+
+	resp = make_response(jsonify({'msg': _id, 'status': 'add'}))
+	resp.set_cookie('cart', json.dumps({_id: number}), max_age=31557600)
+	return resp
 
 
 

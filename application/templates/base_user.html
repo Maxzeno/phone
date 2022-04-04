@@ -27,16 +27,14 @@
 <nav id="mainNav" style="background-color: #1a1d20" class="bg-darks container-fluid d-flex py-3">
 
   <div class="text-light pe-4" style="cursor: pointer;" onclick="emmaNavOpen()">&#9776;</div>
-  <div><img src="{{ url_for('static', filename='img/phoniebg.png') }}" style="max-height: 1.5rem"></div>
+  <a href="/explore"><img src="{{ url_for('static', filename='img/phoniebg.png') }}" style="max-height: 1.5rem"></a>
   <div class="text-right text-light" style="position: absolute;right: 1rem">
         {% block icon %}{% endblock %}
-        <a href="/cart" class="emma-a-light"><i class="bi bi-cart3 cart-badge" value="5" style="font-size: 1.3em; line-height: 0;"></i></a>
+        <a href="/cart" class="emma-a-light"><i class="bi bi-cart3 cart-badge" value="{{ l }}" style="font-size: 1.3em; line-height: 0;"></i></a>
 
         <a class="emma-a-light">
-            <span>
-              <img alt="" class="" src="{{ url_for('static',filename='img/music1.jpeg') }}" style="width: 25px; height: 25px; border-radius: 2rem;border: 2px solid #6c757d">
-            </span>
-          <i class="bi bi-chevron-down" style="line-height: 0; font-size: 0.7em"></i>
+
+          <i class="bi bi-three-dots-vertical" style="line-height: 0; font-size: 1.3em"></i>
 
           </a>
 

@@ -57,6 +57,11 @@ def create_app(config_class=Config):
 	app.register_blueprint(main)
 	app.register_blueprint(admin_section)
 
+
+	@app.template_filter('col_adder')
+	def col_adder(id):
+	    return str(id) + 'col'
+
 	return app
 
 

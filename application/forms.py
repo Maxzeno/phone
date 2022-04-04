@@ -30,8 +30,10 @@ class EmptyForm(FlaskForm):
 
 class AddPhoneForm(FlaskForm):
     image = FileField('image')
-    # brand = StringField('Brand')
-    # color = StringField('Color')
+    name = StringField('Name')
+    brand = StringField('Brand')
+    description = TextAreaField('Description')
+    color = StringField('Color')
     # some wont be tradition input some might  be like buttons 
 
 class ContactUsForm(FlaskForm):

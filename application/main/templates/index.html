@@ -112,7 +112,7 @@
                 <div class="fw-normal col-6">$<span style="font-size: 1.2rem;">10000</span></div>
 
                 <div class="text-end col-6">
-                  <button class="btn btn-sm btn-success add-cart" id="{{ phone.id }}">Add to Cart</button>
+                  <button class="btn btn-sm btn-success send-cart" value="{{ phone.id }}" id="{{ phone.id }}">{% if phone.id in lst_cart %} Remove {% else %} Add to Cart {% endif %}</button>
                 </div>
                 </div>
                 <div class="mt-3 mb-2">
@@ -153,11 +153,45 @@
 <script>
  
 $(function(){
-    $('.add-cart').click(function(e){
-        console.log(e.id)
+    $('.send-cart').click(function(e){
+      console.log($(this).val());
+        $.ajax({
+            url: '/send-cart',
+            data: {'id': $(this).val(), 'number': 1},
+            type: 'POST',
+            success: function(response){
+                console.log(response);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        }).done( function(data){
+            // console.log(data);
+            if (data.status == 'add'){
+                // $('#' + data.msg).prop("disabled", true);
+                $('#' + data.msg).text("Remove");
+                // console.log($('#cart').val(), 'hemmo');
+                // $('#cart').get(0).value--;
+                // console.log('heeeo', document.querySelector('#cart').value);
+                
+                // $('#' + data.msg).hide();
+
+            }else if (data.status == 'remove'){
+                $('#' + data.msg).text("Remove");
+                // console.log($('#cart').val(), 'hemmo');
+                // $('#cart').get(0).value++;
+                // console.log('heeeo', document.querySelector('#cart').value);
+                
+
+
+            }else{
+
+            }
+        });
         e.preventDefault();
     });
 });
+
    
 
 </script>
