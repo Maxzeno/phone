@@ -15,6 +15,7 @@ class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True) 
     email = db.Column(db.String(80), unique=True, nullable=False) 
     password = db.Column(db.String(255), nullable=False)
+    balance = db.Column(db.Float, default=0)
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(50))
     phone_number = db.Column(db.String(50))
@@ -26,12 +27,23 @@ class User(db.Model,UserMixin):
     ip = db.Column(db.String(20))
 
 
-class Order(db.Model):       
+class Orders(db.Model):       
     id = db.Column(db.Integer, primary_key=True) 
+    user_id = db.Column(db.String(60), db.ForeignKey('user.id'))
     product = db.Column(db.String(60), db.ForeignKey('phones.id'))
     delivered = db.Column(db.Boolean, default=False)
     date_delivered = db.Column(db.DateTime)
     date_ordered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+
+class Address(db.Model):       
+    id = db.Column(db.Integer, primary_key=True) 
+    user_id = db.Column(db.String(60), db.ForeignKey('user.id'))
+    continent = db.Column(db.String(50))
+    country = db.Column(db.String(100))
+    state = db.Column(db.String(100))
+    address = db.Column(db.Text(1024))
+    date_added = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 
 class Phones(db.Model):
@@ -39,10 +51,10 @@ class Phones(db.Model):
     date_added = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     brand = db.Column(db.String(40))
     year = db.Column(db.String(10))
-    description = db.Column(db.String(1000)) 
-    phone_image_front = db.Column(db.String(1024))
-    phone_image_back = db.Column(db.String(1024))
-    phone_image_side = db.Column(db.String(1024))
+    description = db.Column(db.Text(1000)) 
+    phone_image_front = db.Column(db.Text(1024))
+    phone_image_back = db.Column(db.Text(1024))
+    phone_image_side = db.Column(db.Text(1024))
     name = db.Column(db.String(300))
     price = db.Column(db.Float)
     rating = db.Column(db.Integer)
@@ -76,13 +88,13 @@ class Userfilter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.String(60), db.ForeignKey('user.id'))
     date_made = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    ordered = db.Column(db.String(60), db.ForeignKey('order.id'))
+    ordered = db.Column(db.String(60), db.ForeignKey('orders.id'))
     brand = db.Column(db.String(40))
     year = db.Column(db.String(10))
-    description = db.Column(db.String(1000)) 
-    phone_image_front = db.Column(db.String(1024))
-    phone_image_back = db.Column(db.String(1024))
-    phone_image_side = db.Column(db.String(1024))
+    description = db.Column(db.Text(1000)) 
+    phone_image_front = db.Column(db.Text(1024))
+    phone_image_back = db.Column(db.Text(1024))
+    phone_image_side = db.Column(db.Text(1024))
     name = db.Column(db.String(300))
     price = db.Column(db.Float)
     rating = db.Column(db.Integer)
@@ -199,7 +211,7 @@ class Userfilter(db.Model):
 #     misc_order = db.Column(db.String(40))
 #     misc_reviewed_only = db.Column(db.Boolean)
 #     new = db.Column(db.Boolean)
-#     description = db.Column(db.String(1000)) 
+#     description = db.Column(db.Text(1000)) 
 #     name = db.Column(db.String(300))
 #     price = db.Column(db.Float)
 #     rating = db.Column(db.Integer)

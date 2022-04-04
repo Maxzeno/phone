@@ -101,7 +101,7 @@
               </a>
               </div>
               <div class="d-sm-none  border-bottom shadow-sm h-100" style="background-color: #f8f8f8">
-                <a href="#" charset="emma-a">
+                <a href="#" class="emma-a">
                 <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='uploads/'+phone.phone_image_front) }}">
               </a>
               </div>
@@ -116,7 +116,7 @@
                 </div>
                 </div>
                 <div class="mt-3 mb-2">
-                  <a href="/product/{{ phone.id }}" class="fw-normal emma-a" style="font-size: 1.15rem;">{{ phone.description }}
+                  <a href="/product/{{ phone.id }}" class="emma-a" style="font-size: 1.15rem;">{{ phone.description | limit_content }}
                   </a>
                 </div>
               </div>

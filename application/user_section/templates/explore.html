@@ -17,27 +17,27 @@
           <div  id="searchIcon" class="fs-3 border-bottom ">Filters</div>
           <div class="py-3 border-bottom">
           <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Phone name or Brand" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Phone name" aria-label="Search">
                 <button class="btn btn-secondary" type="submit"><i class="bi bi-search"></i></button>
               </form>
           </div>
           <div class="py-3 border-bottom">
-            <div class="fw-bold text-black-50 mb-1">Brand</div>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;">Infinix</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;">Tecno</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;">Itel</span>
+            <div class="fw-bold text-black-75 mb-1">Brand</div>
+            <span class="px-1 py-1 me-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;">Infinix</span>
+            <span class="px-1 py-1 me-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;">Tecno</span>
+            <span class="px-1 py-1 me-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;">Itel</span>
           </div>
           <div class="py-3 border-bottom">
-            <div class="fw-bold text-black-50 mb-1">Color</div>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;line-height: 2">Red</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;line-height: 2">Gree</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;line-height: 2">Blue</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;line-height: 2">Pink</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;line-height: 2">Purple</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;line-height: 2">Yellow</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;line-height: 2">Orange</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;line-height: 2">Brown</span>
-            <span class="px-1 py-1 rounded bg-lights text-black-50 filter-btn" style="cursor: pointer;line-height: 2">Mixed</span>
+            <div class="fw-bold text-black-75 mb-1">Color</div>
+            <span class="px-1 me-1 py-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;line-height: 2">Red</span>
+            <span class="px-1 me-1 py-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;line-height: 2">Gree</span>
+            <span class="px-1 me-1 py-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;line-height: 2">Blue</span>
+            <span class="px-1 me-1 py-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;line-height: 2">Pink</span>
+            <span class="px-1 me-1 py-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;line-height: 2">Purple</span>
+            <span class="px-1 me-1 py-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;line-height: 2">Yellow</span>
+            <span class="px-1 me-1 py-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;line-height: 2">Orange</span>
+            <span class="px-1 me-1 py-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;line-height: 2">Brown</span>
+            <span class="px-1 me-1 py-1 rounded bg-lights text-black-75 filter-btn" style="cursor: pointer;line-height: 2">Mixed</span>
           </div>
         </div>
       </div> 
@@ -58,7 +58,7 @@
               </a>
               </div>
               <div class="d-sm-none  border-bottom shadow-sm h-100" style="background-color: #f8f8f8">
-                <a href="#" charset="emma-a">
+                <a href="#" class="emma-a">
                 <img class="img-fluid mx-auto d-block" style="max-height: 170px;max-width: 170px" src="{{ url_for('static', filename='uploads/'+phone.phone_image_front) }}">
               </a>
               </div>
@@ -73,7 +73,7 @@
                 </div>
                 </div>
                 <div class="mt-3 mb-2">
-                  <a href="/product/{{ phone.id }}" class="fw-normal emma-a" style="font-size: 1.15rem;">{{ phone.description }}
+                  <a href="/product/{{ phone.id }}" class="fw-normal emma-a" style="font-size: 1.15rem;">{{ phone.description | limit_content }}
                   </a>
                 </div>
               </div>

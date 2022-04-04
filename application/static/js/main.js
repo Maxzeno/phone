@@ -14,7 +14,7 @@ document.querySelector('#filterIcon').addEventListener('click', filtersAprear);
 
 function emmaNavOpen() {
   document.getElementById('iconSideBar').style.display = 'block';
-  document.getElementById('emmaNav').style.width = '250px';
+  document.getElementById('emmaNav').style.left = '0px';
   // document.getElementById('iconSideBar').style.transition = '1s';
   document.getElementById('mainNav').style.backgroundColor = '#0d0f10';
     // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
@@ -24,7 +24,7 @@ function emmaNavOpen() {
 
 function emmaNavclose() {
   document.getElementById('iconSideBar').style.display = 'none';
-  document.getElementById('emmaNav').style.width = '0px';
+  document.getElementById('emmaNav').style.left = '-250px';
     // document.body.style.backgroundColor = "rgb(255,255,255)";
   document.getElementById('mainNav').style.backgroundColor = '#1a1d20';
 

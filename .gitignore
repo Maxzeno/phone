@@ -1,3 +1,7 @@
 application/static/bootstrap-5.1.1-examples
 test.py
 dustbin.txt
+test.txt
+templates
+inspiration
+*__pycache__

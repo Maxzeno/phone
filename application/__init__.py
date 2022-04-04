@@ -73,6 +73,10 @@ def create_app(config_class=Config):
 			tol += phone.price
 		return int(tol) if tol == int(tol) else tol
 
+	@app.template_filter('limit_content')
+	def limit_content(content):
+	    return content[0:70] + '...'
+
 	return app
 
 

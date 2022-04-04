@@ -1,13 +1,31 @@
-.st{
+.drop-nav{
+      text-decoration: none;
+    --bs-text-opacity: 1;
+    color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.drop-nav:hover{
+      text-decoration: none;
+    --bs-text-opacity: 1;
+    color: rgba(0, 0, 0, 0.85) !important;
+}
+
+
+.drop-nav-bg:hover{
+background-color: #f8f9fa;
+}
+
+.sidebar-menubar{
   height: 100%;
-  width: 0;
+  left: -250px;
+  width: 250px;
   position: fixed;
-  z-index: 1085;
+  z-index: 1;
   top: 0;
-  left: 0;
   background-color: #111;
   overflow-x: hidden;
   transition: 0.5s;
+  opacity: 1;
   }
 
    .cart-badge:after{
@@ -74,8 +92,8 @@ body {
 
     .sidenav {
       height: 100%;
-      width: 250;
-      opacity: 0;
+      width: 0;
+      opacity: 1;
       position: fixed;
       z-index: 1;
       top: 0;

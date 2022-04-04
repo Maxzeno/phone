@@ -33,6 +33,20 @@ def explore():
 
 	return render_template('explore.html', phones=phones, pages=pages, active_page=int(page) if page != None else 1, lst_cart=lst_cart, l=len(lst_cart))
 
+@user_section.route('/dashboard')
+@login_required
+def dashboard():
+	orders = Orders.query.filter_by(id=current_user.id)
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = json.loads(cart)
+		list_cart = list(dict_cart.keys())
+		lst_cart = [ int(i) for i in list_cart ]
+	else:
+		lst_cart = []
+
+	return render_template('dashboard.html', orders=orders, l=len(lst_cart))
+
 
 @user_section.route('/add-phone', methods=["GET", "POST"])
 @login_required

@@ -38,7 +38,8 @@ class AddPhoneForm(FlaskForm):
 
 class ContactUsForm(FlaskForm):
     email = StringField('Email')
-    message = StringField('Message')
+    # subject = StringField('Subject')
+    message = TextAreaField('Message')
 
 class NewsLetterForm(FlaskForm):
     email = StringField('Email')

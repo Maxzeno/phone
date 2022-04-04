@@ -53,7 +53,7 @@
                 </div>
                 </div>
                 <div class="mt-3 mb-2">
-                  <a href="/product/{{ phone.id }}" class="fw-normal emma-a" style="font-size: 1.15rem">{{ phone.description }}
+                  <a href="/product/{{ phone.id }}" class="fw-normal emma-a" style="font-size: 1.15rem">{{ phone.description | limit_content }}
                   </a>
                 </div>
                   <div class="btn-group w-100 mt-3">
