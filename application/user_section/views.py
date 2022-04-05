@@ -36,7 +36,8 @@ def explore():
 @user_section.route('/dashboard')
 @login_required
 def dashboard():
-	orders = Orders.query.filter_by(id=current_user.id)
+	orders = Orders.query.filter_by(id=current_user.id).all()
+	length = len(orders)
 	cart = request.cookies.get('cart')
 	if cart:
 		dict_cart = json.loads(cart)
@@ -45,7 +46,7 @@ def dashboard():
 	else:
 		lst_cart = []
 
-	return render_template('dashboard.html', orders=orders, l=len(lst_cart))
+	return render_template('dashboard.html', orders=orders, length=length, l=len(lst_cart))
 
 
 @user_section.route('/add-phone', methods=["GET", "POST"])

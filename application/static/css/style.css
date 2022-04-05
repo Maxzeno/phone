@@ -20,7 +20,7 @@ background-color: #f8f9fa;
   left: -250px;
   width: 250px;
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   top: 0;
   background-color: #111;
   overflow-x: hidden;

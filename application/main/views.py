@@ -92,11 +92,22 @@ def product(id):
 
 @main.route('/about-us')
 def about_us():
-	return render_template('about_us.html')
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = list(json.loads(cart))
+	else:
+		dict_cart = []
+	return render_template('about_us.html', l=len(dict_cart))
 
 
 @main.route('/contact-us', methods=['POST', 'GET'])
 def contact_us():
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = list(json.loads(cart))
+	else:
+		dict_cart = []
+
 	form = ContactUsForm()
 	if request.method == 'POST' and form.validate_on_submit():
 		if request.host != '127.0.0.1:5000':
@@ -125,27 +136,37 @@ def contact_us():
 			return redirect('/contact-us')
 
 
-	return render_template('contact_us.html', form=form)
+	return render_template('contact_us.html', form=form, l=len(dict_cart))
 
 
 @main.route('/faqs')
 def faqs():
-	return render_template('faqs.html')
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = list(json.loads(cart))
+	else:
+		dict_cart = []
+	return render_template('faqs.html', l=len(dict_cart))
 
 
 @main.route('/warranty-policy')
 def warranty_policy():
-	return render_template('warranty_policy.html')
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = list(json.loads(cart))
+	else:
+		dict_cart = []
+	return render_template('warranty_policy.html', l=len(dict_cart))
 
 
 @main.route('/terms-and-conditions')
 def terms_and_conditions():
-	return render_template('terms_and_conditions.html')
-
-
-
-
-
+	cart = request.cookies.get('cart')
+	if cart:
+		dict_cart = list(json.loads(cart))
+	else:
+		dict_cart = []
+	return render_template('terms_and_conditions.html', l=len(dict_cart))
 
 
 
